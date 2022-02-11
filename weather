@@ -1,0 +1,20 @@
+import requests
+
+city_id = 4778626
+appid = "fbc5b944c0cc70a163827941ee8ac58a"
+
+res = requests.get(f"http://api.openweathermap.org/data/2.5/weather?id={city_id}&appid={appid}&units=metric&lang=ru")
+data = res.json()
+type_wheather = data['weather'][0]
+type_wheather = type_wheather['description']
+city = data['name']
+main = data['main']
+temp = main["temp"]
+feel_like = main['feels_like']
+min_temp = main['temp_min']
+max_temp = main['temp_max']
+pressure = main['pressure']
+humidity = main['humidity']
+wheather_info = f'Сейчас в {city}е {type_wheather}, температура составляет {temp}℃, ощущается как {feel_like} ℃. Минимальная температура составит {min_temp} ℃, максимальная {max_temp} ℃.'
+wheather_info2 = f'Атмосферное давнение {pressure} мм, влажность {humidity} %'
+print(wheather_info, wheather_info2)
